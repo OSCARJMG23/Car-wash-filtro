@@ -272,12 +272,19 @@ formularioCompras.addEventListener('submit',function(event){
     let valorS = 0
     let puntosS = 0
 
-
+    let desc = 0.06
+    let iva = 0.14
 
     for(let servicio of servicios){
-        if(servicio.nombreServiN == selectCliente.value){
+        if(servicio.nombreServiN == selectServicio.value){
             valorS = parseFloat(servicio.valorServiN) 
             puntosS = parseFloat(servicio.puntosServiN)
+
+            valorDesc = parseFloat(valorS*desc)
+            valorTotalDesc = parseFloat(valorS-valorDesc)
+            valorTotal = parseFloat(valorS * iva)
+            totalPagar = parseFloat(valorTotalDesc + valorTotal)
+            
         }    
     }
 
@@ -288,13 +295,13 @@ formularioCompras.addEventListener('submit',function(event){
         }
     }
     
-
+    
     alert(`******* Campus Car Washing Center *******
         Id de Usuario: ${cedula}
         Nombres: ${selectCliente.value}
         Nombre del Servicio: ${selectServicio.value}
-        Valor total con descuento: ${valorS * 0.6 + valorS}
-        Valor total a pagar con Tax: ${valorS*0.14}
+        Valor total con descuento: ${valorTotalDesc}
+        Valor total a pagar con Tax: ${totalPagar}
         Puntos recibidos: +${puntosS}`)
 
 
